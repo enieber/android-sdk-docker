@@ -48,6 +48,7 @@ docker pull lerk/android
 Change directory to your project directory, then run:
 
 ```bash
-docker run --tty --interactive --volume=$(pwd):/opt/workspace --workdir=/opt/workspace --rm lerk/android  /bin/sh -c "./gradlew build"
+docker run --tty --interactive --volume=$(pwd):/opt/workspace --workdir=/opt/workspace --rm lerk/android  /bin/sh -c "
+echo y | android update sdk --no-ui --all --filter build-tools-23.0.1,android-23,extra-android-m2repository && echo y | android update sdk --no-ui --all --filter "extra-google-m2repository" && chmod 775 ./gradlew && ./gradlew test && ./gradlew clean assembleRelease"
 ```
 
